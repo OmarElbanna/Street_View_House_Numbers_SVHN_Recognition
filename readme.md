@@ -206,7 +206,7 @@ def bb_intersection_over_union(boxA, boxB):
     return iou
 ```
 
-## Defining a Function to Remove Dublicated Contours
+## Defining a Function to Remove Duplicated Contours
 
 
 ```python

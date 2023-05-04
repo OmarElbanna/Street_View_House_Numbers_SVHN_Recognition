@@ -48,7 +48,7 @@ Output :
     
 
 
-## Smoothing Using Balateral Filter
+## Smoothing Using Bilateral Filter
 
 
 ```python

@@ -56,16 +56,8 @@ plt.imshow(cv2.cvtColor(bfilter,cv2.COLOR_BGR2RGB))
 ```
 
 
+![output_6_1](https://user-images.githubusercontent.com/96841295/236184531-ecfe4d4d-455b-4361-8622-ff6a642cb609.png)
 
-
-    <matplotlib.image.AxesImage at 0x2bae7d4fe80>
-
-
-
-
-    
-![png](output_6_1.png)
-    
 
 
 ## Convering to Grayscale
@@ -76,17 +68,7 @@ gray = cv2.cvtColor(bfilter,cv2.COLOR_BGR2GRAY)
 plt.imshow(gray,cmap='gray')
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x2bae9dc69e0>
-
-
-
-
-    
-![png](output_8_1.png)
-    
+![output_8_1](https://user-images.githubusercontent.com/96841295/236184639-357a2420-c04a-43d1-a3d4-5ace3a3981b0.png)
 
 
 ## Calculating Histogram of Grayscale Image
@@ -97,17 +79,7 @@ hist = cv2.calcHist(gray,[0],None,[255],[0,255])
 plt.plot(hist)
 ```
 
-
-
-
-    [<matplotlib.lines.Line2D at 0x2bae9e41570>]
-
-
-
-
-    
-![png](output_10_1.png)
-    
+ ![output_10_1](https://user-images.githubusercontent.com/96841295/236184688-6c81d63d-dc4b-430e-a20c-7ffb769e0516.png)
 
 
 ## Applying Histogram Equalization and Constrast Stretching
@@ -119,18 +91,9 @@ cl1 = clahe.apply(gray)
 plt.imshow(cl1,cmap='gray')
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x2baeae80a00>
-
-
-
+![output_12_1](https://user-images.githubusercontent.com/96841295/236184738-e9344ea1-eae9-4b79-82cc-ab14c75d9607.png)
 
     
-![png](output_12_1.png)
-    
-
 
 ## Plotting Equalized Histrogram
 
@@ -141,15 +104,8 @@ plt.plot(hist)
 ```
 
 
+![output_14_1](https://user-images.githubusercontent.com/96841295/236184776-c7f6bc65-9bf6-4a62-809d-63acb1d1585c.png)
 
-
-    [<matplotlib.lines.Line2D at 0x2baeaec2ec0>]
-
-
-
-
-    
-![png](output_14_1.png)
     
 
 
@@ -162,15 +118,9 @@ plt.imshow(edges,cmap='gray')
 ```
 
 
+![output_16_1](https://user-images.githubusercontent.com/96841295/236184805-10e73df9-6075-4214-9d49-748f5ced8765.png)
 
 
-    <matplotlib.image.AxesImage at 0x2baeaf2ee90>
-
-
-
-
-    
-![png](output_16_1.png)
     
 
 
@@ -187,15 +137,13 @@ len(sorted_contours)
 ```
 
 
+Output : 
+```bash
+11
+```
 
+![output_18_1](https://user-images.githubusercontent.com/96841295/236184964-84e1dc1c-8635-4969-990d-c4dfc55debb8.png)
 
-    11
-
-
-
-
-    
-![png](output_18_1.png)
     
 
 
@@ -216,15 +164,15 @@ pred_contours
 ```
 
 
+Output : 
+```bash
+[[139, 20, 163, 69], [107, 22, 131, 76], [85, 26, 100, 76], [146, 25, 157, 58]]
+```
+
+![output_20_1](https://user-images.githubusercontent.com/96841295/236185130-2958a6ef-1a6e-4578-8737-906ab5062634.png)
+   
 
 
-    [[139, 20, 163, 69], [107, 22, 131, 76], [85, 26, 100, 76], [146, 25, 157, 58]]
-
-
-
-
-    
-![png](output_20_1.png)
     
 
 
@@ -304,9 +252,10 @@ filtered_contours
 ```
 
 
-
-
-    [[139, 20, 163, 69], [107, 22, 131, 76], [85, 26, 100, 76], [146, 25, 157, 58]]
+Output : 
+```bash
+[[[139, 20, 163, 69], [107, 22, 131, 76], [85, 26, 100, 76], [146, 25, 157, 58]]
+```
 
 
 
@@ -323,21 +272,8 @@ digitStruct.head()
 
 
 
-
+Output :
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -400,16 +336,14 @@ gt_contours = get_gt_contours(i)
 print(len(gt_contours))
 gt_contours
 ```
-
-    3
-    
-
-
-
-
-    [[82.0, 23.0, 104.0, 79.0],
-     [103.0, 20.0, 135.0, 76.0],
-     [133.0, 14.0, 171.0, 70.0]]
+Output : 
+```bash
+ 3
+[[82.0, 23.0, 104.0, 79.0],
+[103.0, 20.0, 135.0, 76.0],
+[133.0, 14.0, 171.0, 70.0]]
+```
+   
 
 
 
@@ -425,17 +359,7 @@ for contour in gt_contours:
 plt.imshow(cv2.cvtColor(gt_boxes, cv2.COLOR_BGR2RGB))
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x2bae7c77190>
-
-
-
-
-    
-![png](output_34_1.png)
-    
+![output_34_1](https://user-images.githubusercontent.com/96841295/236185903-a1415b0b-470e-42b7-b609-75d508feac88.png)
 
 
 ## Finding Matching Contours
@@ -453,16 +377,14 @@ print(len(match_contours))
 match_contours
 
 ```
-
+Output : 
+```bash
     3
-    
+[{'box': [139, 20, 163, 69], 'iou': 0.5623031938821412},
+{'box': [107, 22, 131, 76], 'iou': 0.7309941520467836},
+{'box': [85, 26, 100, 76], 'iou': 0.6224256292906178}]
+```
 
-
-
-
-    [{'box': [139, 20, 163, 69], 'iou': 0.5623031938821412},
-     {'box': [107, 22, 131, 76], 'iou': 0.7309941520467836},
-     {'box': [85, 26, 100, 76], 'iou': 0.6224256292906178}]
 
 
 
@@ -477,14 +399,13 @@ if len(match_contours) > len(gt_contours):
 match_contours
 ```
 
-
-
-
-    [{'box': [139, 20, 163, 69], 'iou': 0.5623031938821412},
-     {'box': [107, 22, 131, 76], 'iou': 0.7309941520467836},
-     {'box': [85, 26, 100, 76], 'iou': 0.6224256292906178}]
-
-
+Output : 
+```bash
+    3
+[{'box': [139, 20, 163, 69], 'iou': 0.5623031938821412},
+{'box': [107, 22, 131, 76], 'iou': 0.7309941520467836},
+{'box': [85, 26, 100, 76], 'iou': 0.6224256292906178}]
+```
 
 ## Plotting Matching Contours
 
@@ -500,16 +421,9 @@ for contour in match_contours:
 plt.imshow(cv2.cvtColor(match_boxes, cv2.COLOR_BGR2RGB))
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x2baeb067f40>
-
-
-
+![output_40_1](https://user-images.githubusercontent.com/96841295/236186327-8a93bafb-c14e-4540-8487-6058645d8a45.png)
 
     
-![png](output_40_1.png)
     
 
 
@@ -535,8 +449,14 @@ print(f"Total Recall: {recall*100:0.3f}%")
 print(f"Total F1-Score: {f1_score*100:0.3f}%")
 ```
 
-    Total Precision: 75.000%
-    Total Recall: 100.000%
-    Total F1-Score: 85.714%
+Output : 
+```bash
+Total Precision: 75.000%
+Total Recall: 100.000%
+Total F1-Score: 85.714%
+```
+    
+    
+    
     
 

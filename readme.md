@@ -445,16 +445,16 @@ if true_pos == 0:
 else:
     f1_score = (2*precision*recall) / (precision+recall)
 
-print(f"Total Precision: {precision*100:0.3f}%")
-print(f"Total Recall: {recall*100:0.3f}%")
-print(f"Total F1-Score: {f1_score*100:0.3f}%")
+print(f"Precision: {precision*100:0.3f}%")
+print(f"Recall: {recall*100:0.3f}%")
+print(f"F1-Score: {f1_score*100:0.3f}%")
 ```
 
 Output : 
 ```bash
-Total Precision: 75.000%
-Total Recall: 100.000%
-Total F1-Score: 85.714%
+Precision: 75.000%
+Recall: 100.000%
+F1-Score: 85.714%
 ```
     
     

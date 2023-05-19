@@ -460,7 +460,93 @@ Recall: 100.000%
 F1-Score: 85.714%
 ```
     
+# SVHN Digits Detection Pipeline
+
+## Reading Templates
+
+```python
+new_templates = []
+for i in range(2,92):
+    tmp = cv2.imread(f'NEW_NUMBERS/{i}.jpg')
+    gray = cv2.cvtColor(tmp, cv2.COLOR_BGR2GRAY)
+    thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
+    new_templates.append(thresh)
+for row in range(1,11):
+    for col in range(1,11):
+        template = cv2.imread(f"Templates/numbers/PineTools.com_2023-05-08_07h18m28s/PineTools.com_files/row-{row}-column-{col}.png")
+        gray = cv2.cvtColor(template,cv2.COLOR_BGR2GRAY)
+        thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
+        new_templates.append(thresh)
+        
+for row in [1,2,3,4,6]:
+    for col in range(0,10):
+        template = cv2.imread(f"Templates/numbers/templates/row-{row}-column-{col}.png")
+        gray = cv2.cvtColor(template,cv2.COLOR_BGR2GRAY)
+        thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
+        new_templates.append(thresh)
+```
+
+## Showing Templates Example
+
+```python
+plt.imshow(new_templates[4],cmap = 'gray')
+```
+![output_8_1](https://github.com/mostafanasrat4/Street_View_House_Numbers_SVHN_Recognition/assets/96841295/885ce08c-412f-4064-9835-d805f8177b64)
+
+## Defining HOG Descriptor
+
+```python
+win_size = (20, 20)   
+block_size = (10, 10) 
+block_stride = (5, 5) 
+cell_size = (5, 5)    
+nbins = 9             
+hogCV = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
+```
+
+## Recognizing Digits
+
+
+```python
+f, axarr = plt.subplots(len(gt_contours),3, figsize=(12, 6))
+for k,contour in enumerate(gt_contours):
+    score=0
+    [x1, y1, x2, y2,label] = contour
+    digit = img_gray[y1:y2,x1:x2]
+#     plt.figure()
     
+    digit_resized = cv2.resize(digit, win_size)
+    fd, hog_image = hog(digit_resized, orientations=9, pixels_per_cell=(8, 8),cells_per_block=(2, 2), visualize=True)
+    axarr[k,1].imshow(hog_image, cmap="gray")
+#     plt.figure()
+    axarr[k,0].imshow(digit_resized,cmap = 'gray')
+    digit_hog = hogCV.compute(digit_resized).reshape(-1)
+    scores = []
+    for i,template in enumerate(new_templates):
+        template_resized = cv2.resize(template, win_size)
+        template_hog = hogCV.compute(template_resized).reshape(-1)
+        score = np.dot(digit_hog, template_hog)
+        scores.append(score)
+    tmp = scores.index(max(scores))
+#     plt.figure()
+    axarr[k,2].imshow(new_templates[tmp],cmap = 'gray')
+    if tmp%10 == label:
+        cv2.rectangle(img2, (x1,y1), (x2,y2), (0,255,0), 1)
+        cv2.putText(img2,str(tmp%10), (x1, y1-1), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 255, 0), 1)
+    
+```
+![output_23_1](https://github.com/mostafanasrat4/Street_View_House_Numbers_SVHN_Recognition/assets/96841295/d1e62d24-0d46-43f2-8d0f-67345fb63a7c)
+
+## Plotting Recognized Digits
+
+
+```python
+plt.imshow(img2,cmap='gray')
+```
+
+![output_25_1](https://github.com/mostafanasrat4/Street_View_House_Numbers_SVHN_Recognition/assets/96841295/3cf898f5-23c7-4487-8245-8981b3d37c7c)
+
+
     
     
 
